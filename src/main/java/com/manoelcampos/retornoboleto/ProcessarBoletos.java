@@ -1,12 +1,16 @@
 package com.manoelcampos.retornoboleto;
 
 import java.net.URI;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 public class ProcessarBoletos {
+    public static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static final DateTimeFormatter FORMATO_DATA_HORA = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");
+
     // Contrato continua funcionando, é obrigatorio passar URI e retorna a Lista de boletos, logo o contrato continua funcionando.
     private Function<URI, List<Boleto>> leituraRetorno;
 

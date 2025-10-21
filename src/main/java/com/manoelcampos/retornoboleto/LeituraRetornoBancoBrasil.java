@@ -5,15 +5,11 @@ import java.io.UncheckedIOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.Array;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeituraRetornoBancoBrasil implements LeituraRetorno {
-    @Override
+public class LeituraRetornoBancoBrasil {
     public List<Boleto> lerArquivo(URI caminhoArquivo) {
         System.out.println("Lendo arquivo do BB");
 
