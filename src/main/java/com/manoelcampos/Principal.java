@@ -1,18 +1,18 @@
 package com.manoelcampos;
 
-//import java.io.IO;
 
 import com.manoelcampos.retornoboleto.LeituraRetornoBancoBrasil;
 import com.manoelcampos.retornoboleto.ProcessarBoletos;
 
 import java.net.URI;
+import java.util.function.Function;
 
 public class Principal {
     public static void main(String[] args) {
        //  a = IO.readln("Acessando o banco!");
 
         var processador = new ProcessarBoletos();
-        LeituraRetorno leitura = new LeituraRetornoBancoBrasil();
+        Function leitura = new LeituraRetornoBancoBrasil();
 
         processador.setLeituraRetorno(leitura);
 
