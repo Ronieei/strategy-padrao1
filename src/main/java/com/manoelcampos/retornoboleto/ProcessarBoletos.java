@@ -1,11 +1,12 @@
 package com.manoelcampos.retornoboleto;
 
 import java.net.URI;
+import java.util.function.Function;
 
 public class ProcessarBoletos {
-    private LeituraRetorno leituraRetorno;
+    private Function leituraRetorno;
 
-    public void setLeituraRetorno(LeituraRetorno leituraRetorno) {
+    public void setLeituraRetorno(Function leituraRetorno) {
         this.leituraRetorno = leituraRetorno;
     }
 
@@ -17,3 +18,7 @@ public class ProcessarBoletos {
         }
     }
 }
+
+// Cc - Case sensitive - Ctrl+R
+// W - mudar somente aquilo
+// Embaixo coloca o nome que queremos

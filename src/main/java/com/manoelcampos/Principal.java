@@ -2,7 +2,6 @@ package com.manoelcampos;
 
 //import java.io.IO;
 
-import com.manoelcampos.retornoboleto.LeituraRetorno;
 import com.manoelcampos.retornoboleto.LeituraRetornoBancoBrasil;
 import com.manoelcampos.retornoboleto.ProcessarBoletos;
 
