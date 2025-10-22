@@ -1,10 +1,12 @@
 package com.manoelcampos;
 
 
+import com.manoelcampos.retornoboleto.Boleto;
 import com.manoelcampos.retornoboleto.LeituraRetornoBancoBrasil;
 import com.manoelcampos.retornoboleto.ProcessarBoletos;
 
 import java.net.URI;
+import java.util.List;
 import java.util.function.Function;
 
 public class Principal {
@@ -12,7 +14,7 @@ public class Principal {
        //  a = IO.readln("Acessando o banco!");
 
         var processador = new ProcessarBoletos();
-        Function leitura = new LeituraRetornoBancoBrasil();
+        Function<URI, List<Boleto>> leitura = LeituraRetornoBancoBrasil::lerArquivo; // --> ARMAZENANDO A FUNÇÃO E NAO O OBJETO nao sendo metodo statico
 
         processador.setLeituraRetorno(leitura);
 

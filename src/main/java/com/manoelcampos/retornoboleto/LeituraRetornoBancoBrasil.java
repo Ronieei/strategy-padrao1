@@ -9,8 +9,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.manoelcampos.retornoboleto.ProcessarBoletos.FORMATO_DATA;
+
 public class LeituraRetornoBancoBrasil {
-    public List<Boleto> lerArquivo(URI caminhoArquivo) {
+    public static List<Boleto> lerArquivo(URI caminhoArquivo) {
         System.out.println("Lendo arquivo do BB");
 
         var listaBoletos = new ArrayList<Boleto>();

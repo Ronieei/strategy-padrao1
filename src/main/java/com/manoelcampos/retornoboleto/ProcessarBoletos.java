@@ -14,7 +14,7 @@ public class ProcessarBoletos {
     // Contrato continua funcionando, é obrigatorio passar URI e retorna a Lista de boletos, logo o contrato continua funcionando.
     private Function<URI, List<Boleto>> leituraRetorno;
 
-    public void setLeituraRetorno(Function leituraRetorno) {
+    public void setLeituraRetorno(Function<URI, List<Boleto>> leituraRetorno) {
         this.leituraRetorno = leituraRetorno;
     }
 

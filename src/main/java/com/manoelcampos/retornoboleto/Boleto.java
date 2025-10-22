@@ -3,6 +3,8 @@ package com.manoelcampos.retornoboleto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static com.manoelcampos.retornoboleto.ProcessarBoletos.FORMATO_DATA;
+import static com.manoelcampos.retornoboleto.ProcessarBoletos.FORMATO_DATA_HORA;
 import static java.lang.String.format;
 
 /**
@@ -113,10 +115,10 @@ public class Boleto {
         }
 
         if(dataVencimento != null)
-            builder.append(format(" Venc: %s", LeituraRetorno.FORMATO_DATA.format(dataVencimento)));
+            builder.append(format(" Venc: %s", FORMATO_DATA.format(dataVencimento)));
 
         if(dataPagamento != null)
-            builder.append(format(" Pag: %s", LeituraRetorno.FORMATO_DATA_HORA.format(dataPagamento)));
+            builder.append(format(" Pag: %s", FORMATO_DATA_HORA.format(dataPagamento)));
 
         builder.append(format(" Valor: %10.2f", valor));
 
