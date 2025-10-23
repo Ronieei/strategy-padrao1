@@ -13,7 +13,7 @@ import static com.manoelcampos.retornoboleto.ProcessarBoletos.FORMATO_DATA;
 
 public class LeituraRetornoBancoBrasil {
     public static List<Boleto> lerArquivo(URI caminhoArquivo) {
-        System.out.println("Lendo arquivo do BB");
+        System.out.println("Lendo arquivo do BB - Brasil");
 
         var listaBoletos = new ArrayList<Boleto>();
 
