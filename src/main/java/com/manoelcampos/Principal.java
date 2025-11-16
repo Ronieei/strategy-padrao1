@@ -14,18 +14,35 @@ public class Principal {
     public static void main(String[] args) {
        //  a = IO.readln("Acessando o banco!");
 
+        // Criação de uma instância de ProcessarBoletos, responsável pelo processamento dos boletos.
         var processador = new ProcessarBoletos();
-        Function<URI, List<Boleto>> leitura = LeituraRetornoBancoBrasil::lerArquivo; // --> ARMAZENANDO A FUNÇÃO E NAO O OBJETO sendo metodo statico
 
+        // Definição de uma função de leitura que usa uma referência a método estático.
+        // A função `lerArquivo` da classe LeituraRetornoBancoBrasil é responsável por ler um arquivo CSV
+        // e retornar uma lista de objetos do tipo Boleto.
+        Function<URI, List<Boleto>> leitura = LeituraRetornoBancoBrasil::lerArquivo;
+
+        // Configura o processador para usar a função de leitura definida acima.
+        // Isso permite que o processador saiba como ler os dados de boletos a partir de um arquivo.
         processador.setLeituraRetorno(leitura);
 
+        // Criação de um objeto URI que aponta para o arquivo CSV contendo os dados dos boletos.
+        // O caminho do arquivo é relativo à estrutura do projeto (pasta resources).
         URI caminhoArquivo = URI.create("src/main/resources/banco-brasil-1.csv");
+
+        // Chamada ao método processarBoletos, que usa a função de leitura configurada
+        // para processar os boletos a partir do arquivo especificado.
         processador.processarBoletos(caminhoArquivo);
 
-        var bd = new LeituraRetornoBancoBradesco();
-        List<Boleto> boletoList = bd.lerArquivoBoleto(URI.create("src/main/resources/bradesco-1.csv"));
 
-        bd.imprimirBoletos(boletoList);
+
+        var bd = new LeituraRetornoBancoBradesco();
+        Function<URI, List<Boleto>> leituraB = LeituraRetornoBancoBradesco::lerArquivoBoleto;
+
+        processador.setLeituraRetorno(leituraB);
+        processador.processarBoletos(URI.create("src/main/resources/bradesco-1.csv"));
+
+
 
     }
 }

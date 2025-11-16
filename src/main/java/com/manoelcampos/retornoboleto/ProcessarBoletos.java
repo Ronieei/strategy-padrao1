@@ -9,7 +9,8 @@ import java.util.function.UnaryOperator;
 
 public class ProcessarBoletos {
     public static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    public static final DateTimeFormatter FORMATO_DATA_HORA = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");
+    public static final DateTimeFormatter FORMATO_DATA_HORA = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");// formato 12 horas
+    public static final DateTimeFormatter FORMATO_DATA_HORA24 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");// formato 24 horas
 
     // Contrato continua funcionando, é obrigatorio passar URI e retorna a Lista de boletos, logo o contrato continua funcionando.
     private Function<URI, List<Boleto>> leituraRetorno;

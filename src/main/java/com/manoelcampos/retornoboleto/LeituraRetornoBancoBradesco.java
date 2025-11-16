@@ -1,24 +1,24 @@
 package com.manoelcampos.retornoboleto;
 
-import java.io.*;
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.manoelcampos.retornoboleto.ProcessarBoletos.FORMATO_DATA;
-import static com.manoelcampos.retornoboleto.ProcessarBoletos.FORMATO_DATA_HORA;
+import static com.manoelcampos.retornoboleto.ProcessarBoletos.*;
 
-public class LeituraRetornoBancoBradesco implements LeituraRetorno{
+public class LeituraRetornoBancoBradesco {
 
-    @Override
-    public List<Boleto> lerArquivoBoleto(URI caminhoArquivo) {
+    public static List<Boleto> lerArquivoBoleto(URI caminhoArquivo) {
         System.out.println("\nLendo arquivo do BB - Bradesco");
         var listaBoletos = new ArrayList<Boleto>();
 
         try {
-            List<String> linhas = listaDeBoletos(caminhoArquivo);
+            //ByteBuffer - Melhor armazenar dados - Pegando o arquivo e lendo os dados
+            List<String> linhas = Files.readAllLines(Paths.get(caminhoArquivo.getPath()));
 
             for (String linha : linhas){
                 String[] vetor = linha.split(";");
@@ -28,7 +28,7 @@ public class LeituraRetornoBancoBradesco implements LeituraRetorno{
                 boleto.setAgencia(vetor[2]);
                 boleto.setContaBancaria(vetor[3]);
                 boleto.setDataVencimento(LocalDate.parse(vetor[4], FORMATO_DATA ));
-                boleto.setDataPagamento(LocalDateTime.parse(vetor[5], FORMATO_DATA_HORA));
+                boleto.setDataPagamento(LocalDateTime.parse(vetor[5], FORMATO_DATA_HORA24));
                 boleto.setCpfCliente(vetor[6]);
                 boleto.setValor(Double.parseDouble(vetor[7]));
                 boleto.setMulta(Double.parseDouble(vetor[8]));
@@ -43,25 +43,4 @@ public class LeituraRetornoBancoBradesco implements LeituraRetorno{
 
         return listaBoletos;
     }
-
-    private List<String> listaDeBoletos(URI caminhoArquivo) {
-        String ENCONDING = "UTF-8";
-        List<String> linhas = new ArrayList<>();
-        try (BufferedReader leitor = new BufferedReader(new InputStreamReader(new FileInputStream(caminhoArquivo.getPath()),ENCONDING))) {
-            for (String linha = leitor.readLine(); linha != null; linha = leitor.readLine()) {
-                linhas.add(linha);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return linhas;
-    }
-
-    public void imprimirBoletos(List<Boleto> boletos){
-        for (Boleto boleto : boletos) {
-            System.out.println(boleto);
-        }
-    }
-
-
 }
